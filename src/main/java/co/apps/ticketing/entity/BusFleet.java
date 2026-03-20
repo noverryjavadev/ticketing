@@ -10,9 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -34,6 +38,15 @@ public class BusFleet extends AuditTable{
 
     @Column(name = "number_of_seat")
     private Long numberOfSeat;
+
+    @Column(name = "availability")
+    private boolean availability;
+
+    @Column(name = "fleet_status")
+    private String fleetStatus;
+
+    @Column(name = "maintenance_schedule")
+    private LocalDateTime maintenanceSchedule;
 
     @Column(name = "description")
     private String description;
