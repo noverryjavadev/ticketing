@@ -1,10 +1,14 @@
 package co.apps.ticketing.dto.busfleet;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FleetDataUpdateRequest {
 
     private Long id;

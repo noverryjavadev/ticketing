@@ -9,6 +9,7 @@ import co.apps.ticketing.dto.busfleet.RegisterBusData;
 import co.apps.ticketing.service.busfleet.BusFleetService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Description;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +33,13 @@ public class BusFleetController {
     private final BusFleetService busFleetService;
 
     @GetMapping
+    @Description("Get All Bus List")
     public ResponseEntity<?> getAllBus(@RequestParam(value = "page") int page,
                                        @RequestParam(value = "size") int size){
-        page = page - 1;
-        CustomPagination<BusFleetList> busFleetListPage = busFleetService.getAllBusFleet(new PaginationRequest(page, size, "id", "ASC"));
+        if (page < 1){
+            page = 1;
+        }
+        CustomPagination<BusFleetList> busFleetListPage = busFleetService.getAllBusFleet(new PaginationRequest(page - 1, size, "id", "ASC"));
         return ResponseEntity.ok(busFleetListPage);
     }
 
