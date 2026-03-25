@@ -1,7 +1,7 @@
 package co.apps.ticketing.service;
 
 import co.apps.ticketing.config.JwtService;
-import co.apps.ticketing.dto.AuthenticationRequest;
+import co.apps.ticketing.dto.response.AuthenticationRequest;
 import co.apps.ticketing.dto.AuthenticationResponse;
 import co.apps.ticketing.dto.RegisterRequest;
 import co.apps.ticketing.entity.Token;

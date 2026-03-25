@@ -1,4 +1,4 @@
-package co.apps.ticketing.dto;
+package co.apps.ticketing.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

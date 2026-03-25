@@ -6,6 +6,7 @@ import co.apps.ticketing.dto.busfleet.BusFleetList;
 import co.apps.ticketing.dto.busfleet.CustomPagination;
 import co.apps.ticketing.dto.busfleet.FleetDataUpdateRequest;
 import co.apps.ticketing.dto.busfleet.RegisterBusData;
+import co.apps.ticketing.dto.response.BaseResponse;
 import co.apps.ticketing.service.busfleet.BusFleetService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -46,25 +47,37 @@ public class BusFleetController {
     @PostMapping
     public ResponseEntity<?> createBusData(@RequestBody RegisterBusData registerBusData){
         busFleetService.createBusData(registerBusData);
-        return ResponseEntity.ok(Map.of("status", "00", "message" , "create success"));
+        return ResponseEntity.ok(BaseResponse.builder()
+                        .status("00")
+                        .message("create success")
+                .build());
     }
 
     @PatchMapping
     public ResponseEntity<?> updateAvailability(@RequestBody AvailabilityUpdateRequest request){
         busFleetService.updateAvailability(request);
-        return ResponseEntity.ok(Map.of("status", "00", "message" , "update success"));
+        return ResponseEntity.ok(BaseResponse.builder()
+                .status("00")
+                .message("patch success")
+                .build());
     }
 
     @PutMapping
     public ResponseEntity<?> updateBusFleetData(@RequestBody FleetDataUpdateRequest request){
         busFleetService.updateFleetData(request);
-        return ResponseEntity.ok(Map.of("status", "00", "message" , "update success"));
+        return ResponseEntity.ok(BaseResponse.builder()
+                .status("00")
+                .message("update success")
+                .build());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteFleetData(@PathVariable("id") Long id){
         busFleetService.deleteFleetData(id);
-        return ResponseEntity.ok(Map.of("status", "00", "message" , "delete success"));
+        return ResponseEntity.ok(BaseResponse.builder()
+                .status("00")
+                .message("delete success")
+                .build());
     }
 
 
