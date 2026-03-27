@@ -7,6 +7,7 @@ import co.apps.ticketing.dto.busfleet.CustomPagination;
 import co.apps.ticketing.dto.busfleet.FleetDataUpdateRequest;
 import co.apps.ticketing.dto.busfleet.RegisterBusData;
 import co.apps.ticketing.dto.response.BaseResponse;
+import co.apps.ticketing.enums.ResponseCode;
 import co.apps.ticketing.service.busfleet.BusFleetService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @RestController
 @RequestMapping("/api/v1/bus-fleet")
 @RequiredArgsConstructor
@@ -35,7 +34,7 @@ public class BusFleetController {
 
     @GetMapping
     @Description("Get All Bus List")
-    public ResponseEntity<?> getAllBus(@RequestParam(value = "page") int page,
+    public ResponseEntity<Object> getAllBus(@RequestParam(value = "page") int page,
                                        @RequestParam(value = "size") int size){
         if (page < 1){
             page = 1;
@@ -45,38 +44,38 @@ public class BusFleetController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createBusData(@RequestBody RegisterBusData registerBusData){
+    public ResponseEntity<Object> createBusData(@RequestBody RegisterBusData registerBusData){
         busFleetService.createBusData(registerBusData);
         return ResponseEntity.ok(BaseResponse.builder()
-                        .status("00")
-                        .message("create success")
+                        .status(ResponseCode.SUCCESS.getCode())
+                        .message(ResponseCode.SUCCESS.getMessage())
                 .build());
     }
 
     @PatchMapping
-    public ResponseEntity<?> updateAvailability(@RequestBody AvailabilityUpdateRequest request){
+    public ResponseEntity<Object> updateAvailability(@RequestBody AvailabilityUpdateRequest request){
         busFleetService.updateAvailability(request);
         return ResponseEntity.ok(BaseResponse.builder()
-                .status("00")
-                .message("patch success")
+                .status(ResponseCode.SUCCESS.getCode())
+                .message("patch " + ResponseCode.SUCCESS.getMessage())
                 .build());
     }
 
     @PutMapping
-    public ResponseEntity<?> updateBusFleetData(@RequestBody FleetDataUpdateRequest request){
+    public ResponseEntity<Object> updateBusFleetData(@RequestBody FleetDataUpdateRequest request){
         busFleetService.updateFleetData(request);
         return ResponseEntity.ok(BaseResponse.builder()
-                .status("00")
-                .message("update success")
+                .status(ResponseCode.SUCCESS.getCode())
+                .message("update " + ResponseCode.SUCCESS.getMessage())
                 .build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteFleetData(@PathVariable("id") Long id){
+    public ResponseEntity<Object> deleteFleetData(@PathVariable("id") Long id){
         busFleetService.deleteFleetData(id);
         return ResponseEntity.ok(BaseResponse.builder()
-                .status("00")
-                .message("delete success")
+                .status(ResponseCode.SUCCESS.getCode())
+                .message("delete " + ResponseCode.SUCCESS.getMessage())
                 .build());
     }
 
