@@ -23,4 +23,5 @@ public class Seat {
     private String lockedBy; // userId yang mengunci
     private LocalDateTime lockedAt;
     private Integer version;
+    private Long price;
 }

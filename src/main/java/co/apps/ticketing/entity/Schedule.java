@@ -26,4 +26,6 @@ public class Schedule {
     private Integer totalSeats;
     private Integer availableSeats;
     private Integer version; // For optimistic locking
+    private String busName;
+    private String busType;
 }

@@ -10,12 +10,14 @@
     * Refresh-Token : /api/v1/auth/refresh-token
 
 ````
-src/main/java/com/bus/ticket/
+src/main/java/co/apps/ticketing/
 ├── controller/
 │   ├── AuthController.java (sudah ada)
-│   ├── BusController.java (sudah ada)
+│   ├── BusFleetController.java (sudah ada)
 │   ├── OrderController.java (baru)
-│   └── QueueController.java (baru - untuk manajemen antrian)
+│   ├── QueueController.java (baru - untuk manajemen antrian)
+│   ├── ScheduleController.java
+│   └── UserController.java
 ├── service/
 │   ├── OrderService.java (baru)
 │   ├── QueueService.java (baru)
@@ -39,3 +41,6 @@ src/main/java/com/bus/ticket/
 └── config/
 ├── RedisConfig.java (baru)
 └── AsyncConfig.java (baru)
+````
+
+## ========================

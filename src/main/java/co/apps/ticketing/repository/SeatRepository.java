@@ -16,6 +16,8 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
 
     Optional<Seat> findByScheduleIdAndSeatNumber(Long scheduleId, String seatNumber);
 
+    List<Seat> findByScheduleId(Long scheduleId);
+
     @Modifying
     @Transactional
     @Query(value = "UPDATE seats SET status = 'LOCKED', locked_by = :userId, locked_at = NOW(), version = version + 1 " +
