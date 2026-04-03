@@ -32,6 +32,8 @@ public class BusFleetServiceImpl implements BusFleetService {
 
     private final BusFleetRepository busFleetRepository;
 
+    private static final String ERROR_SAVE = "Error on save :";
+
 
     @Override
     public CustomPagination<BusFleetList> getAllBusFleet(PaginationRequest request) {
@@ -93,7 +95,7 @@ public class BusFleetServiceImpl implements BusFleetService {
                     .build();
             busFleetRepository.save(busFleet);
         }catch (Exception e){
-            log.error("Error on save : {}", e.getMessage());
+            log.error("{}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Save Error");
         }
 
@@ -118,7 +120,7 @@ public class BusFleetServiceImpl implements BusFleetService {
             busFleet.setFleetStatus(request.getNewStatus());
             busFleetRepository.save(busFleet);
         }catch (Exception e){
-            log.error("Error on save : {}", e.getMessage());
+            log.error(ERROR_SAVE + "{}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Save Error");
         }
     }
@@ -145,7 +147,7 @@ public class BusFleetServiceImpl implements BusFleetService {
             busFleet.setDescription(request.getDesc());
             busFleetRepository.save(busFleet);
         }catch (Exception e){
-            log.error("Error on save : {}", e.getMessage());
+            log.error(ERROR_SAVE+"{}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Save Error");
         }
     }
@@ -161,12 +163,6 @@ public class BusFleetServiceImpl implements BusFleetService {
 
     private static LocalDateTime convertToLocalDateTime(String dateString) {
         LocalDate date = LocalDate.parse(dateString);
-        return date.atStartOfDay();
-    }
-
-    private static LocalDateTime convertWithFormatter(String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(dateString, formatter);
         return date.atStartOfDay();
     }
 }
